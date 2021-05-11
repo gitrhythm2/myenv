@@ -1,8 +1,10 @@
 
 FROM ubuntu:focal
 
-ENV USER linuxbrew
-ENV HOME /home/linuxbrew
+LABEL maintainer="Hiroyuki Hosokawa" \
+      version="1.0" \
+      description="ubuntu:focalを元にした、開発環境のベースとなるイメージ" \
+      url="https://github.com/gitrhythm2/myenv/tree/main/docker/images/base"
 
 SHELL ["/bin/bash", "-c"]
 
@@ -10,14 +12,4 @@ SHELL ["/bin/bash", "-c"]
 RUN apt-get update
 RUN apt-get update && \
     apt-get upgrade && \
-    apt-get -y install build-essential procps curl file git sudo vim fish
-
-# ユーザー作成
-RUN useradd -m ${USER} && \
-    echo "${USER}:hoge" | chpasswd && \
-    usermod -G adm ${USER} && \
-    echo "${USER} ALL=(ALL) NOPASSWD:ALL" >>/etc/sudoers
-
-# ユーザーとホームディレクトリを変更
-USER ${USER}
-WORKDIR ${HOME}
+    apt-get -y install build-essential procps curl file git sudo vim
