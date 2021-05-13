@@ -45,7 +45,7 @@ s:	# コンテナ停止(stop)
 l:	# コンテナに接続(ログイン)(login)
 	@make b
 	@make r
-	docker exec -it ${CONTAINER_NAME} /bin/bash --login
+	docker exec -it ${CONTAINER_NAME} fish --login
 
 cb: # イメージの作り直し
 	@make c
