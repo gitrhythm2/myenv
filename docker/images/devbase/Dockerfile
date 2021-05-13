@@ -29,16 +29,11 @@ RUN git clone https://github.com/Homebrew/brew /home/${USER}/.linuxbrew/Homebrew
     echo "eval $(/home/${USER}/.linuxbrew/bin/brew shellenv)" >>~/.profile && \
     brew doctor
 
-# 開発環境のベースをインストール
+# ユーザー環境構築
 RUN brew install git && \
     brew install fish && \
-    brew install anyenv
-
-# bashとfishの設定ファイル関連
-RUN mkdir -p .config/fish
+    mkdir -p .config/fish
+# bashとfishの設定ファイル関連をコピー
 COPY --chown=linuxbrew:linuxbrew config/ .
-RUN echo 'eval "$(anyenv init -)"' >> ~/.profile && \
-    echo 'set -x PATH $HOME/.anyenv/bin $PATH' >> ~/.config/fish/config.fish && \
-    echo 'eval (anyenv init - | source)' >> ~/.config/fish/config.fish && \
-    # プロンプトの色をホストOSのターミナルと異なる色にする
-    echo 'PS1="\[\e[1;35m\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ "' >> .bashrc
+# プロンプトの色をホストOSのターミナルと異なる色にする
+RUN echo 'PS1="\[\e[1;35m\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ "' >> .bashrc
