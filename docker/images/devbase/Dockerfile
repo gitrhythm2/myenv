@@ -1,6 +1,11 @@
 
 FROM gitrhythm/base:latest
 
+LABEL maintainer="Hiroyuki Hosokawa" \
+      version="1.0" \
+      description="homebrewを元にした開発環境のベースイメージ" \
+      url="https://github.com/gitrhythm2/myenv/tree/main/docker/images/devbase"
+
 ENV USER linuxbrew
 ENV HOME /home/linuxbrew
 ENV PATH /home/${USER}/.linuxbrew/bin:$PATH
