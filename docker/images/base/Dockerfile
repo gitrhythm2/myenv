@@ -9,7 +9,6 @@ LABEL maintainer="Hiroyuki Hosokawa" \
 SHELL ["/bin/bash", "-c"]
 
 # 最低限必要となるパッケージをインストール
-RUN apt-get update
 RUN apt-get update && \
     apt-get upgrade && \
     apt-get -y install build-essential procps curl file git sudo vim

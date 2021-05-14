@@ -36,4 +36,4 @@ RUN brew install git && \
 # bashとfishの設定ファイル関連をコピー
 COPY --chown=linuxbrew:linuxbrew config/ .
 # プロンプトの色をホストOSのターミナルと異なる色にする
-RUN echo 'PS1="\[\e[1;35m\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ "' >> .bashrc
+#RUN echo 'PS1="\[\e[1;35m\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ "' >> .bashrc
