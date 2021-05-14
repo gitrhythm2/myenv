@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# 簡易的なdockerコマンドラッパー(そのうちちゃんとしたものを作りたい)
+case "$1" in
+  "l") docker image ls ;;
+  "la") docker image ls -a ;;
+  "ps") docker ps ;;
+  "psa") docker ps -a ;;
+  "login") docker exec -it "$2" fish --login ;;
+esac

@@ -2,6 +2,7 @@ version: '3'
 services:
   golang:
     build: .
+    image: 'golang'
     container_name: 'golang'
     stdin_open: true
     tty: true
@@ -12,6 +13,6 @@ services:
       - /app/.devcontainer
     command: /bin/bash
 
-# docker compose up
+# docker compose build
 # docker compose stop
-# docker compose run golang fish --login
+# docker compose exec golang fish --login

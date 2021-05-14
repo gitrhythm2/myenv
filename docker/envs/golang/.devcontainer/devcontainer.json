@@ -2,5 +2,8 @@
   "name": "Golang environment",
   "dockerComposeFile": "docker-compose.yml",
   "service": "golang",
+  "settings": {
+    "terminal.integrated.defaultprofile.linux": "fish",
+  },
   "workspaceFolder": "/app"
 }
