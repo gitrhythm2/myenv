@@ -8,14 +8,15 @@ IMAGE := $(shell docker image ls ${REPO} --format {{.Repository}})
 CONTAINER := $(shell docker container ps -a --format {{.Names}} | grep ${CONTAINER_NAME})
 UP_CONTAINER := $(shell docker container ps --format {{.Names}} | grep ${CONTAINER_NAME})
 
-b:	# イメージのビルド(build)
+.PHONY: b # イメージのビルド(build)
+b:
 	@if [[ "${IMAGE}" == "" ]]; then \
 		echo イメージをビルドしています... ;\
 		docker build -t ${REPO}:${TAG} . ;\
 	fi
 
-c:	# イメージを削除
-	@make s
+.PHONY: c # イメージを削除
+c: s
 	@if [[ "${CONTAINER}" == "${CONTAINER_NAME}" ]]; then \
 		echo コンテナを削除しています... ;\
 		docker container rm "${CONTAINER_NAME}" ;\
@@ -25,8 +26,8 @@ c:	# イメージを削除
 		docker image rm ${REPO} ;\
 	fi
 
-r:	# コンテナの作成・起動(run)
-	@make b
+.PHONY: r # コンテナの作成・起動(run)
+r: b
 	@if [[ "${CONTAINER}" == "" ]]; then \
 		echo コンテナを作成しています... ;\
 		docker container create -it --name ${CONTAINER_NAME} ${REPO}:${TAG} ;\
@@ -36,26 +37,27 @@ r:	# コンテナの作成・起動(run)
 		docker container start ${CONTAINER_NAME} ;\
 	fi
 
-s:	# コンテナ停止(stop)
+.PHONY: s # コンテナ停止(stop)
+s:
 	@if [[ "${UP_CONTAINER}" == "${CONTAINER_NAME}" ]]; then \
 		echo コンテナを停止しています... ;\
 		docker container stop "${CONTAINER_NAME}" ;\
 	fi
 
-l:	# コンテナに接続(ログイン)(login)
-	@make b
-	@make r
+.PHONY: l # コンテナに接続(ログイン)(login)
+l: r
 	docker exec -it ${CONTAINER_NAME} fish --login
 
-cb: # イメージの作り直し
-	@make c
-	@make b
+.PHONY: cb # イメージの作り直し
+cb: c
+	make b
 
-cl:	# イメージを作り直してログイン
-	@make c
-	@make l
+.PHONY: cl # イメージを作り直してログイン
+cl: c
+	make l
 
-h:
+.PHONY: help
+help:
 	@echo "b: イメージのビルド(build)"
 	@echo "c: イメージの削除(clean) 〜 コンテナが起動・作成されていれば停止・削除する"
 	@echo "r: コンテナの作成(run)、及び起動"
@@ -65,6 +67,7 @@ h:
 	@echo "cl: イメージを作り直し 〜 コンテナ作成・起動 〜 ログイン"
 	@echo "echo: 定義済み変数の表示"
 
+.PHONY: echo
 echo:
 	@echo "REPO:${REPO}"
 	@echo "TAG:${TAG}"
