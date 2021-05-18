@@ -1,5 +1,10 @@
 FROM gitrhythm/devbase:latest
 
+LABEL maintainer="Hiroyuki Hosokawa" \
+    version="1.0" \
+    description="gitrhythm/devbaseを元に構築したgolang開発環境のベースイメージ" \
+    url="https://github.com/gitrhythm2/myenv/tree/main/docker/images/gobase"
+
 RUN sudo apt-get update && \
     sudo apt-get upgrade && \
     brew upgrade
