@@ -1,0 +1,15 @@
+version: '3'
+x-var: &NAME "golib"
+services:
+  golang:
+    build: .
+    image: *NAME
+    container_name: *NAME
+    stdin_open: true
+    tty: true
+    hostname: *NAME
+    working_dir: '/myenv/golang/lib'
+    volumes:
+      - ..:/myenv/golang/lib
+      - /myenv/golang/lib/.devcontainer
+    command: /bin/bash
