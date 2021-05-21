@@ -1,0 +1,20 @@
+version: '3'
+x-var: &NAME "dwrapper"
+services:
+  golang:
+    build: .
+    image: *NAME
+    container_name: *NAME
+    stdin_open: true
+    tty: true
+    hostname: *NAME
+    working_dir: '/myenv/golang/dwrapper'
+    volumes:
+      - ..:/myenv/golang/dwrapper
+      - ../../lib:/myenv/golang/lib
+      - /myenv/golang/dwrapper/.devcontainer
+    command: /bin/bash
+
+# docker compose build
+# docker compose stop
+# docker compose exec golang fish --login
