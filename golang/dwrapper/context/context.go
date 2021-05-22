@@ -90,12 +90,15 @@ func buildLoginCommand(ctx *Context) []string {
 }
 
 func normalBuild(ctx *Context) []string {
-	length := 1 + len(ctx.CommandType) + cap(ctx.Args)
-	command := make([]string, length)
-
-	command[0] = APP_NAME
-	if len(ctx.CommandType) > 0 {
-		command[1] = ctx.CommandType
+	length := 1
+	if ctx.CommandType != CMD_OTHER {
+		length++
 	}
-	return append(command, ctx.Args...)
+	commands := make([]string, length, length+len(ctx.Args))
+
+	commands[0] = APP_NAME
+	if ctx.CommandType != CMD_OTHER {
+		commands[1] = ctx.CommandType
+	}
+	return append(commands, ctx.Args...)
 }
