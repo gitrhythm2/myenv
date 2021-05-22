@@ -66,6 +66,12 @@ func buildContainerCommand(ctx *Context) []string {
 }
 
 func buildComposeCommand(ctx *Context) []string {
+	// カレントディレクトリにdocker-compose.ymlが存在しなかった場合は.devcontainer
+	// ディレクトリに移動する。
+	// compose用のファイルはdocker-compose.ymlで、プロジェクトルートか.devcontainer
+	// に存在していることを前提としている
+	// その上で、プロジェクトルートでコマンドを発行してもdocker-compose.ymlを読み込める
+	// ようにするのが、この処理の意図
 	if !file.IsFile("docker-compose.yml") {
 		os.Chdir(".devcontainer")
 	}
