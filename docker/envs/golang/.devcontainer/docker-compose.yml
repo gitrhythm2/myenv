@@ -1,12 +1,13 @@
 version: '3'
+x-ver: $NAME "golang"
 services:
   golang:
     build: .
-    image: 'golang'
-    container_name: 'golang'
+    image: *NAME
+    container_name: *NAME
     stdin_open: true
     tty: true
-    hostname: 'golang'
+    hostname: *NAME
     working_dir: '/app'
     volumes:
       - ..:/app
