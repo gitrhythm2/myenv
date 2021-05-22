@@ -6,6 +6,25 @@ import (
 	"testing"
 )
 
+func TestEmpty(t *testing.T) {
+	expect := &context.Context{
+		Verbose:     false,
+		CommandType: context.CMD_OTHER,
+		Args:        nil,
+	}
+
+	app, _ := parse(nil)
+	if !equal(app, expect) {
+		t.Fatalf("parse error: [%#v]", app)
+	}
+
+	expect.Verbose = true
+	app, _ = parse([]string{"-v"})
+	if !equal(app, expect) {
+		t.Fatalf("parse error: [%v]", app)
+	}
+}
+
 func TestImage(t *testing.T) {
 	expect := &context.Context{
 		Verbose:     true,

@@ -24,6 +24,7 @@ const (
 	CMD_CONTAINER string = "container"
 	CMD_COMPOSE   string = "compose"
 	CMD_LOGIN     string = "login"
+	CMD_OTHER     string = ""
 )
 
 func (ctx *Context) BuildCommand() error {
@@ -38,6 +39,8 @@ func (ctx *Context) BuildCommand() error {
 		ctx.Command = buildComposeCommand(ctx)
 	case CMD_LOGIN:
 		ctx.Command = buildLoginCommand(ctx)
+	case CMD_OTHER:
+		ctx.Command = normalBuild(ctx)
 	default:
 		err = fmt.Errorf("unknown command[%s]", ctx.Command)
 	}
@@ -87,8 +90,12 @@ func buildLoginCommand(ctx *Context) []string {
 }
 
 func normalBuild(ctx *Context) []string {
-	command := make([]string, 2, cap(ctx.Args)+2)
+	length := 1 + len(ctx.CommandType) + cap(ctx.Args)
+	command := make([]string, length)
+
 	command[0] = APP_NAME
-	command[1] = ctx.CommandType
+	if len(ctx.CommandType) > 0 {
+		command[1] = ctx.CommandType
+	}
 	return append(command, ctx.Args...)
 }

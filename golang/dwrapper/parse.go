@@ -6,12 +6,17 @@ import (
 
 func parse(args []string) (*context.Context, error) {
 	var ctx *context.Context = &context.Context{}
-	if args[0] == "-v" {
+
+	// if args[0] == "-v" {
+	// 	ctx.Verbose = true
+	// 	args = shift(args)
+	// }
+	if arg0(args) == "-v" {
 		ctx.Verbose = true
 		args = shift(args)
 	}
 
-	switch args[0] {
+	switch arg0(args) {
 	case "i":
 		ctx.CommandType = context.CMD_IMAGE
 		args = shift(args)
@@ -21,6 +26,8 @@ func parse(args []string) (*context.Context, error) {
 	case "l":
 		ctx.CommandType = context.CMD_LOGIN
 		args = shift(args)
+	case "":
+		ctx.CommandType = context.CMD_OTHER
 	default:
 		ctx.CommandType = context.CMD_CONTAINER
 	}
@@ -30,6 +37,14 @@ func parse(args []string) (*context.Context, error) {
 	}
 
 	return ctx, nil
+}
+
+func arg0(args []string) string {
+	if len(args) == 0 {
+		return ""
+	} else {
+		return args[0]
+	}
 }
 
 func shift(arr []string) []string {
