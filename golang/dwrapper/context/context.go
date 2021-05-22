@@ -1,6 +1,11 @@
 package context
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+
+	"local.packages/myenv/file"
+)
 
 type Context struct {
 	// trueの場合、組み立てたコマンドを表示するのみで実行はしない
@@ -8,6 +13,7 @@ type Context struct {
 	Args        []string
 	CommandType string
 	Command     []string
+	CurrentDir  string
 }
 
 const (
@@ -60,6 +66,9 @@ func buildContainerCommand(ctx *Context) []string {
 }
 
 func buildComposeCommand(ctx *Context) []string {
+	if !file.IsFile("docker-compose.yml") {
+		os.Chdir(".devcontainer")
+	}
 	return normalBuild(ctx)
 }
 

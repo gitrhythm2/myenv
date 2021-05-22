@@ -9,6 +9,10 @@ import (
 )
 
 func Exec(ctx *context.Context) {
+	if ctx.CurrentDir != "" {
+		os.Chdir(ctx.CurrentDir)
+	}
+
 	path, err := exec.LookPath(context.APP_NAME)
 	if err != nil {
 		log.Fatal(err)
