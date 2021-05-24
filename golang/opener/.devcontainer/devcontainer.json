@@ -9,6 +9,7 @@
   },
   "extensions": [
     "golang.go",
+    "bungcip.better-toml"
   ],
-  "workspaceFolder": "/myenv/golang/dwrapper"
+  "workspaceFolder": "/myenv/golang/opener"
 }

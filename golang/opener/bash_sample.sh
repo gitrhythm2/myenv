@@ -2,9 +2,9 @@
 
 # bash用組み込み関数サンプル
 o() {
-  declare -a item=($(./opener.sh $1))
+  declare -a item=($(opener $1))
   if [[ ${#item[@]} -lt 2 ]]; then
-    exit 1
+    return
   fi
 
   case "${item[0]}" in

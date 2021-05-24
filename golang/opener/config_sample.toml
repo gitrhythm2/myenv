@@ -1,0 +1,24 @@
+
+[[Item]]
+  Key = "ggl"
+  Type = "www"
+  Uri = "www.google.co.jp"
+  Description = "Google"
+
+[[Item]]
+  Key = "varlog"
+  Type = "dir"
+  Uri = "/usr/local/var/log"
+  Description = "logディレクトリ"
+
+[[Item]]
+  Key = "bashrc"
+  Type = "file"
+  Description = "bashrc"
+  Uri = "/home/user/.bashrc"
+
+[[Item]]
+  Key = "top"
+  Type = "bear"
+  Description = "bearのインデックスページ(Uriはページに割り振られたID)"
+  Uri = "ECFE700E-A475-4781-A870-DCEFD8AE4110-1578-0000007FF94D534F"

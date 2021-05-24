@@ -2,9 +2,9 @@
 
 # fish用組み込み関数サンプル
 function o
-  set -l item (./opener.sh $argv[1] | string split " ")
+  set -l item (opener $argv[1] | string split " ")
   if test (count $item) -lt 2
-    exit 1
+    return 1
   end
 
   switch $item[1]
