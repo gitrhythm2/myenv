@@ -1,0 +1,15 @@
+version: '3'
+x-var: &NAME "opener"
+services:
+  golang:
+    build: .
+    image: *NAME
+    container_name: *NAME
+    stdin_open: true
+    tty: true
+    hostname: *NAME
+    working_dir: /myenv/golang/opener
+    volumes:
+      - ..:/myenv/golang/opener
+      - ../../lib:/myenv/golang/lib
+    command: /bin/bash

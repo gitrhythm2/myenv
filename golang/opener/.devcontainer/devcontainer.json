@@ -1,0 +1,14 @@
+{
+  "name": "Golang environment",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "golang",
+  "settings": {
+    "go.goroot": "/home/linuxbrew/.goenv/versions/1.16.3",
+    "go.gopath": "/home/linuxbrew/go/1.16.3",
+    "terminal.integrated.defaultprofile.linux": "fish",
+  },
+  "extensions": [
+    "golang.go",
+  ],
+  "workspaceFolder": "/myenv/golang/dwrapper"
+}
