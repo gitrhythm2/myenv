@@ -1,7 +1,7 @@
 version: '3'
 x-ver: &NAME "webpack"
 services:
-  golang:
+  webpack:
     build: .
     image: *NAME
     container_name: *NAME
