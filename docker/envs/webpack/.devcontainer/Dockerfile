@@ -1,0 +1,2 @@
+FROM gitrhythm/nodebase:latest
+

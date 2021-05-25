@@ -5,11 +5,11 @@ LABEL maintainer="Hiroyuki Hosokawa" \
     description="gitrhythm/devbaseを元に構築したnodeg開発環境のベースイメージ" \
     url="https://github.com/gitrhythm2/myenv/tree/main/docker/images/nodebase"
 
-RUN sudo apt-get update && \
-    sudo apt-get upgrade && \
+RUN sudo apt-get -y update && \
+    sudo apt-get -y upgrade && \
     brew upgrade
 
-SHELL ["/bin/bash", "-c"]
+SHELL ["/usr/bin/bash", "-c"]
 
 # nodenvインストール
 RUN brew install nodenv && \

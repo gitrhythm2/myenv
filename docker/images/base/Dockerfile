@@ -6,9 +6,9 @@ LABEL maintainer="Hiroyuki Hosokawa" \
       description="ubuntu:focalを元にした、開発環境のベースとなるイメージ" \
       url="https://github.com/gitrhythm2/myenv/tree/main/docker/images/base"
 
-SHELL ["/bin/bash", "-c"]
+#SHELL ["/usr/bin/bash", "-c"]
 
 # 最低限必要となるパッケージをインストール
-RUN apt-get update && \
-    apt-get upgrade && \
+RUN apt-get -y update && \
+    apt-get -y upgrade && \
     apt-get -y install build-essential procps curl file git sudo vim

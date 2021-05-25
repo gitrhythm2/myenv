@@ -1,0 +1,11 @@
+{
+  "name": "node-webpack environment",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "webpack",
+  "settings": {
+    "terminal.integrated.defaultprofile.linux": "fish",
+  },
+  "extensions": [
+  ],
+  "workspaceFolder": "/app"
+}

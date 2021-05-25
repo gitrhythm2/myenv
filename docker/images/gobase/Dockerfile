@@ -5,8 +5,8 @@ LABEL maintainer="Hiroyuki Hosokawa" \
     description="gitrhythm/devbaseを元に構築したgolang開発環境のベースイメージ" \
     url="https://github.com/gitrhythm2/myenv/tree/main/docker/images/gobase"
 
-RUN sudo apt-get update && \
-    sudo apt-get upgrade && \
+RUN sudo apt-get -y update && \
+    sudo apt-get -y upgrade && \
     brew upgrade
 
 ENV GOENV_ROOT=$HOME/.goenv
