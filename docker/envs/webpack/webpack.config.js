@@ -12,6 +12,14 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(jpe?g|gif|png|svg)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'images/[name][ext]',
+          publicPath: './',
+        }
+      },
+      {
         test: /\.html$/,
         loader: "html-loader"
       }
