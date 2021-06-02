@@ -27,8 +27,10 @@ $ npm run start   # サーバーを起動する場合
 │   │   └── sample.html
 │   ├── images
 │   │   └── sample.png
-│   └── js
-│       └── index.js
+│   ├── js
+│   │   └── index.js
+│   └── scss
+│       └── style.scss
 ├── package-lock.json
 ├── package.json
 └── webpack.config.js
@@ -131,4 +133,28 @@ webpack.config.jsにルールを追加する。
       },
     ]
   },
+```
+
+### CSS /Sassをバンドルする
+
+ローダーを利用してCSS / Sassをバンドルに出力する。
+- sass-loader: SassをCSSにコンパイルする
+- css-loader: CSSをモジュールに変換する
+- style-loader: バンドルしたCSSをHTMLに挿入する
+
+```
+$ npm i -Dsass sass-loader css-loader style-loader
+```
+
+webpack.config.jsにルールを追加
+```
+{
+  test: /\.scss$/,
+  include: path.resolve(__dirname, 'src/scss'),
+  use: [
+    'style-loader',
+    'css-loader',
+    'sass-loader'
+  ]
+},
 ```

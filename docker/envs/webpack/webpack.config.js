@@ -20,6 +20,15 @@ module.exports = {
         }
       },
       {
+        test: /\.scss$/,
+        include: path.resolve(__dirname, 'src/scss'),
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      },
+      {
         test: /\.html$/,
         loader: "html-loader"
       }
