@@ -1,3 +1,32 @@
+@import "destyle.css";
+
+body {
+  // destyle.cssで定義済みのためコメントアウト
+  // -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  a {
+    color: #59220d;
+    transition: 0.5s;
+    &:hover {
+      color: #d53e04;
+      img {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+  }
+
+  color: #333;
+  font: 16px/1.4 "Helvetica Neue", sans-serif;
+  // -webkit-font-feature-settings: "palt";
+  // font-feature-settings: "palt";
+}
+
 $bg-color: red;
 body {
   background-color: $bg-color;
